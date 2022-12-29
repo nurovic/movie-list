@@ -1,9 +1,11 @@
 import React from 'react'
 import Product from './Product'
+import Add from './Dynamic'
 const App = () => {
   return (
     <div>
-      <Product/>
+      {/* <Product/> */}
+      <Add/>
     </div>
   )
 }
