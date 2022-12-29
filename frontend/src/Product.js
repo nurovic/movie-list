@@ -10,41 +10,38 @@ const NewProduct = ({ history }) => {
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
   const [seller, setSeller] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState("");
   const [imagesPreview, setImagesPreview] = useState([]);
 
 
 
 
   const submitHandler = async(e) => {
-      const formData = new FormData();
-      e.preventDefault();
-    formData.set("name", name)
-    formData.append("nameVideo", nameVideo);
-    images.forEach((image) => {
-          formData.append("images", image);
-        });
-        const ad = await axios.post("http://localhost:4000/movies", formData)
-    // dispatch(newProduct(formData));C
-};
-console.log(images)
-const onChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImagesPreview([]);
-    setImages([]);
-    setNameVideo([])
 
-    files.forEach((file) => {
-        const reader = new FileReader();
+      e.preventDefault()
+
+      const formData = new FormData()
+      formData.set('name', name)
+      formData.set('images', images)
+
+        const ad = await axios.post("http://localhost:4000/movies", formData)
+        console.log(ad)
+};
+const onChange = e => {
+    // if(e.target.name === 'avatar') {
+        const reader = new FileReader()
+
         reader.onload = () => {
-            if (reader.readyState === 2) {
-                setImagesPreview((oldArray) => [...oldArray, reader.result]);
-                setImages((oldArray) => [...oldArray, reader.result]);
+            if(reader.readyState === 2) {
+                setImages(reader.result)
             }
-        };
-        reader.readAsDataURL(file);
-    });
-  };
+        }
+
+        reader.readAsDataURL(e.target.files[0])
+    // }else {
+    //     // setUser({...user, [e.target.name]: e.target.value})
+    // }
+}
   return (
     <Fragment>
       <div className="row">
@@ -69,7 +66,7 @@ const onChange = (e) => {
 
 
                 <div className="form-group">
-                  <label>MOVİES</label>
+                  <label>Add Movie</label>
 
                   <div className="custom-file">
                     <input

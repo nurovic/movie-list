@@ -3,8 +3,7 @@ const Mongoose = require("mongoose")
 const MoviesSchema = new Mongoose.Schema(
         {
             name: String,
-            images: [
-                {
+
                     public_id: {
                         type: String,
                         required: true
@@ -13,11 +12,7 @@ const MoviesSchema = new Mongoose.Schema(
                         type: String,
                         required: true
                     },
-                    nameVideo: {
-                        type: String,
-                    },
-                }
-            ]
+
         },
 {versionKey:false}
 )
