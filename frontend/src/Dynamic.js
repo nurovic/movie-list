@@ -34,10 +34,9 @@ function App() {
     
     const formData = new FormData();
     e.preventDefault();
-
     formVal.forEach((image) => {
         formData.append("images", image.movie);
-        formData.append("name", image.name);
+        formData.append("name",  image.name);
       });
     await axios.post("http://localhost:4000/movies", formData)
     

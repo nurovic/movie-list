@@ -2,7 +2,6 @@ const Mongoose = require("mongoose")
 
 const MoviesSchema = new Mongoose.Schema(
         {
-            name: String,
             images: [
                 {
                     public_id: {
