@@ -2,9 +2,10 @@ import {useState} from 'react';
 import './App.css';
 import axios from 'axios'
 function App() {
-  const [formVal, setFormVal] = useState([{name:'', movie:''}])
+    const [title, setTitle] = useState('')
+  const [formVal, setFormVal] = useState([{subTitle:'', movie:''}])
   const addRow = () => {
-    setFormVal([...formVal, {name:'', movie:''}])
+    setFormVal([...formVal, {subTitle:'', movie:''}])
   }
   const onRemove=(i) => {
     const newForm = [...formVal]
@@ -12,11 +13,11 @@ function App() {
     setFormVal(newForm)
   }
   const onHandle = (e, i) => {
-    let newForm = [...formVal]
+      let newForm = [...formVal]
 
     if(e.target.type === "file"){
         const reader = new FileReader()
-        newForm[i][e.target.name] = reader.result
+        newForm[i][e.target.subTitle] = reader.result
 
         reader.onload = () => {
             if(reader.readyState === 2) {
@@ -26,6 +27,7 @@ function App() {
         }
         reader.readAsDataURL(e.target.files[0])
     }
+
     newForm[i][e.target.name]= e.target.value
     setFormVal(newForm)
   }
@@ -34,10 +36,13 @@ function App() {
     
     const formData = new FormData();
     e.preventDefault();
+
+    formData.set("title", title);
     formVal.forEach((image) => {
         formData.append("images", image.movie);
-        formData.append("name",  image.name);
+        formData.append("subTitle",  image.subTitle);
       });
+
     await axios.post("http://localhost:4000/movies", formData)
     
 
@@ -46,11 +51,12 @@ function App() {
     <div className="App">
       <div style={{width:'60%', margin:'20px auto', }}>
         <form onSubmit={onSubmit}>
+            <label>Name</label>
+            <input type="text" name="title" value={title}  onChange={(e)=> setTitle(e.target.value)}/>
           {formVal.map((item, i)=> (
-            <div>
+              <div>
               <div style={{padding:'10px', margin:'10px', diplay:'flex', flexDirection:'row'}}>
-                <label>Name</label>
-                <input type="text" name="name" value={item.name || ""} onChange={(e)=> onHandle(e, i)}/>
+                <input type="text" name="subTitle" value={item.subTitle || ""} onChange={(e)=> onHandle(e, i)}/>
               <label style={{marginTop:'50px'}}>Email</label>
               <input type="file" name="movie" value={item.email || ""} onChange={(e)=>onHandle(e, i)}/>
               {

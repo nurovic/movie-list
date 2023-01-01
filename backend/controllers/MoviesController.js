@@ -10,8 +10,8 @@ class Movies {
           //   images = req.body.images
           // }
           const imgData = req.body.images
-          const nameData = req.body.name
-          
+          const subTitle = req.body.subTitle
+          console.log(imgData)
       //     let dataArray = []
       // for (let i = 0; i < imgData.length; i++) {
       //   for (let j = 0; j < nameData.length; j++) {
@@ -24,8 +24,8 @@ class Movies {
       //     }
       //   }
       // }
-      let dataArray = imgData.map(function(item, index) {
-        return {img: item, name: nameData[index]};
+      let dataArray = imgData?.map(function(item, index) {
+        return {img: item, subTitle: subTitle[index]};
     });
       console.log(dataArray)
       // imgData.forEach((element, i) => {
@@ -39,7 +39,7 @@ class Movies {
           imagesLinks.push({
             public_id: result.public_id,
             url: result.secure_url,
-            nameVideo: dataArray[i].name
+            subTitle: dataArray[i].subTitle
           })
       }
 
