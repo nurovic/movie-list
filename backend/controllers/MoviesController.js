@@ -27,7 +27,6 @@ class Movies {
       let dataArray = imgData?.map(function(item, index) {
         return {img: item, subTitle: subTitle[index]};
     });
-      console.log(dataArray)
       // imgData.forEach((element, i) => {
       //   nameData.forEach((el,index ) => {
       //     console.log(element[i] === el[index])

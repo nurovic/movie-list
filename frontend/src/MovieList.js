@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import './App.css';
+import './App.css'
 import axios from 'axios'
-function App() {
+function MovieList() {
     const [title, setTitle] = useState('')
   const [formVal, setFormVal] = useState([{subTitle:'', movie:''}])
   const addRow = () => {
@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <div style={{width:'60%', margin:'20px auto', }}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="movie-list">
             <label>Name</label>
             <input type="text" name="title" value={title}  onChange={(e)=> setTitle(e.target.value)}/>
           {formVal.map((item, i)=> (
@@ -72,77 +72,10 @@ function App() {
               <button type="submit" style={{marginLeft:'20px'}}>Submit</button>
            </div>
         </form>
+
       </div>
     </div>
   );
 }
 
-export default App;
-
-
-
-// import React, { useState } from "react";
-
-
-// function Addmoreinput() {
-//   const [inputList, setinputList]= useState([{firstName:'', lastName:''}]);
-
-//   const handleinputchange=(e, index)=>{
-//     console.log(e.target.files[0], index)
-//     const {name, value}= e.target;
-//     const list= [...inputList];
-//     console.log(value)
-//     list[index][name]= value;
-//     setinputList(list);
-
-//   }
- 
-//   const handleremove= index=>{
-//     const list=[...inputList];
-//     list.splice(index,1);
-//     setinputList(list);
-//   }
-
-//   const handleaddclick=()=>{ 
-//     setinputList([...inputList, { firstName:'', lastName:''}]);
-//   }
-//   return (
-//     <div className="content">
-//      <div className="row">
-//        <div className="col-sm-12">
-//          <h5 className="mt-3 mb-4 fw-bold">Dynamically add/remove inputs fields reactjs </h5>
-           
-//             { 
-//             inputList.map( (x,i)=>{
-//               return(
-//               <div className="row mb-3">
-//                  <div class="form-group col-md-4">
-//                  <label >First Name</label>
-//                   <input type="text"  name="firstName" class="form-control"  placeholder="Enter First Name" onChange={ e=>handleinputchange(e,i)} />
-//                </div>
-//                <div class="form-group col-md-4">
-//                <label >Last Name</label>
-//                   <input type="file"  name="lastName" class="form-control"   placeholder="Enter Last Name" onChange={ e=>handleinputchange(e,i) }/>
-//                </div>
-//                <div class="form-group col-md-2 mt-4">
-//                {
-//                   inputList.length!==1 &&
-//                   <button  className="btn btn-danger mx-1" onClick={()=> handleremove(i)}>Remove</button>
-//                }
-//                { inputList.length-1===i &&
-//                <button  className="btn btn-success" onClick={ handleaddclick}>Add More</button>
-//                }
-//                </div>
-//             </div>
-//               );
-//              } )} 
-
-               
-//        </div>
-//      </div>
-//     </div>
-//   );
-// }
-// export default Addmoreinput;
-
-
+export default MovieList;
