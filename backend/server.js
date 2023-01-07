@@ -8,7 +8,7 @@ const cloudinary = require('cloudinary')
 
 const fileUpload = require('express-fileupload')
 
-const { MoviesRoutes } = require("./routes")
+const { MoviesRoutes, CourseRoutes } = require("./routes")
 
 const app = express()
 
@@ -30,6 +30,7 @@ cloudinary.config({
   })
   
 app.use("/movies", MoviesRoutes)
+app.use("/course", CourseRoutes)
 
 app.listen(4000, () => {
     console.log(`Server is running...`)

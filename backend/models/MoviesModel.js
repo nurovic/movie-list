@@ -21,5 +21,5 @@ const MoviesSchema = new Mongoose.Schema(
         },
 {versionKey:false}
 )
-// LevelSchema.plugin(require('mongoose-autopopulate'))
+MoviesSchema.plugin(require('mongoose-autopopulate'))
 module.exports =  Mongoose.model("MoviesSchema", MoviesSchema)

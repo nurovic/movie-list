@@ -1,4 +1,4 @@
-const MoviesDB = require('../model/MoviesModel')
+const MoviesDB = require('../models/MoviesModel')
 const cloudinary = require('cloudinary');
 
 class Movies {
