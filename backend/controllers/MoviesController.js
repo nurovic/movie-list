@@ -2,11 +2,15 @@ const MoviesDB = require('../models/MoviesModel')
 const cloudinary = require('cloudinary');
 
 class Movies {
-  async indexs(req, res){
+  async index(req, res){
     try {
-          const imgData = req.body.images
-          const subTitle = req.body.subTitle
-          console.log(imgData)
+      console.log(req.body.quantity)
+      // a?.map(a => ( console.log(a)) )
+          // const imgData = req.body.images
+          // const subTitle = req.body.subTitle
+          // console.log(imgData)
+
+          //2
       //     let dataArray = []
       // for (let i = 0; i < imgData.length; i++) {
       //   for (let j = 0; j < nameData.length; j++) {
@@ -19,30 +23,36 @@ class Movies {
       //     }
       //   }
       // }
-      let dataArray = imgData?.map(function(item, index) {
-        return {img: item, subTitle: subTitle[index]};
-    });
+
+     // 1   
+      //   let dataArray = imgData?.map(function(item, index) {
+    //     return {img: item, subTitle: subTitle[index]};
+    // });
+
+
       // imgData.forEach((element, i) => {
       //   nameData.forEach((el,index ) => {
       //     console.log(element[i] === el[index])
       //   })
       // });
-        let imagesLinks = []
-        for (let i = 0; i < dataArray.length; i++) {
-        const result = await cloudinary.v2.uploader.upload(dataArray[i].img);
-          imagesLinks.push({
-            public_id: result.public_id,
-            url: result.secure_url,
-            subTitle: dataArray[i].subTitle
-          })
-      }
 
-      req.body.images = imagesLinks
-      const product = await MoviesDB.create(req.body);
-      res.status(201).json({
-        success: true,
-        product,
-      });
+      //3
+      //   let imagesLinks = []
+      //   for (let i = 0; i < dataArray.length; i++) {
+      //   const result = await cloudinary.v2.uploader.upload(dataArray[i].img);
+      //     imagesLinks.push({
+      //       public_id: result.public_id,
+      //       url: result.secure_url,
+      //       subTitle: dataArray[i].subTitle
+      //     })
+      // }
+
+      // req.body.images = imagesLinks
+      // const product = await MoviesDB.create(req.body);
+      // res.status(201).json({
+      //   success: true,
+      //   product,
+      // });
     } catch (error) {
       console.log("imageError:", error)
     }
@@ -58,7 +68,7 @@ class Movies {
       console.log("gellAll course", error)
     }
   }
-  async index(req, res){
+  async indexa(req, res){
     try {
       const a =
        [

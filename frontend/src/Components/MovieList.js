@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, FieldArray, useFormikContext } from "formik";
 import axios from 'axios'
 const peopleData = {
@@ -139,22 +139,22 @@ const People = ({ peopleArrayHelpers }) => {
 };
 
 const MyForm = () => {
-  const dataCpz = async() => {
-
+  const dataCpz = async (e) => {
+      console.log(e.people)
+      const data = e.people
+      const newQuantity = new FormData();
+      newQuantity.append('quantity', JSON.stringify(data))
+      await axios.post("http://localhost:4000/movies", newQuantity)
+    
   }
   return (
-    <Formik initialValues={{ ...peopleData }} enableReinitialize={true}>
+
+    <>
+    <Formik initialValues={{ ...peopleData }} enableReinitialize={true}
+    onSubmit={a => {dataCpz(a)}}
+    >
       {({ values }) => (
-        <Form
-          onChange={event => {
-            console.log(
-              "name",
-              event.target.name,
-              " | value",
-              event.target.value
-            );
-          }}
-        >
+        <Form >
           <div style={{ display: "flex" }}>
             <div style={{ float: "left" }}>
               <span>number of people: {values.count}</span>
@@ -175,10 +175,11 @@ const MyForm = () => {
               </pre>
             </div>
           </div>
-          <button onClick={dataCpz()}> send</button>
+          <button type="submit" > send</button>
         </Form>
       )}
     </Formik>
+      </>
   );
 };
 
