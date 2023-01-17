@@ -1,16 +1,120 @@
-const MoviesDB = require('../models/MoviesModel')
-const cloudinary = require('cloudinary');
+const MoviesDB = require("../models/MoviesModel");
+const cloudinary = require("cloudinary");
 
 class Movies {
-  async index(req, res){
+  async index(req, res) {
     try {
-      console.log(req.body.quantity)
+      // const dataSchema = [
+      //   {
+      //     title: "Johneqeq",
+      //     movies: [
+      //       {
+      //         sub: "000002eqwe0000",
+      //         subt: "Deneme",
+      //       },
+      //       {
+      //         sub: "111wqewqe111",
+      //         subt: "Deneme111",
+      //       },
+      //       {
+      //         sub: "22222",
+      //         subt: "Deneme222",
+      //       },
+      //       {
+      //         sub: "33333333",
+      //         subt: "Deneme3333",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     title: "Mqweerteqeq",
+      //     movies: [
+      //       {
+      //         sub: "mov",
+      //         subt: "Don mbov",
+      //       },
+      //       {
+      //         sub: "asdasd",
+      //         subt: "asdadasd",
+      //       },
+      //       {
+      //         sub: "sdadasda",
+      //         subt: "asdadasd",
+      //       },
+      //       {
+      //         sub: "2asdad",
+      //         subt: "asdsd",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     title: "wqrqwrqrcan",
+      //     movies: [
+      //       {
+      //         sub: "modf2112312gdsfgdv",
+      //         subt: "Dqweqweegfgon mbov",
+      //       },
+      //       {
+      //         sub: "13adasdas",
+      //         subt: "asdvfdgrthrqfadasd",
+      //       },
+      //       {
+      //         sub: "sdadafgdsfgdsfgsda",
+      //         subt: "asdadfgdsdasd",
+      //       },
+      //       {
+      //         sub: "2asdadsfgfgdsfgdsgd",
+      //         subt: "asdsdfsgdsgfsd",
+      //       },
+      //       {
+      //         sub: "asdfgdsgfdsfasd",
+      //         subt: "asgdsgdsfgdfsgdadasd",
+      //       },
+      //       {
+      //         sub: "sdadagsdfgdssda",
+      //         subt: "asdadfgsdfdasd",
+      //       },
+      //       {
+      //         sub: "2asdsfgsdfgsdgdad",
+      //         subt: "dsfgasdsd",
+      //       },
+      //     ],
+      //   },
+      // ];
+      let newList = [];
+      // for (let i = 0; i < a.length; i++) {
+      //   let imagesLinks = [];
+      //   for (let j = 0; j < movies.length; j++) {
+      //     console.log(movies[j])
+      //     // const result = await cloudinary.v2.uploader.upload(dataArray[i].img);
+      //     // imagesLinks.push({
+      //     //   public_id: result.public_id,
+      //     //   url: result.secure_url,
+      //     //   subTitle: dataArray[i].subTitle,
+      //     // });
+      //   }
+      // }
+      let dataSchema = req.body.quantity;
+      console.log(dataSchema)
+      let hey = [];
+      dataSchema.forEach((mp) => {
+        console.log(mp)
+        // let fj = mp.movies.map((ds, i) => {
+        //   const result =  cloudinary.v2.uploader.upload(ds.movie);
+        //   return (ds = { public_id: result.public_id,  url: result.secure_url,  ds: ds.subTitle,});
+        // });
+        // mp.movies = fj;
+        // hey.push(mp);
+      });
+      console.log(dataSchema);
+      // hey.map(a => console.log(a.movies))
+      // console.log(req.body.quantity)
       // a?.map(a => ( console.log(a)) )
-          // const imgData = req.body.images
-          // const subTitle = req.body.subTitle
-          // console.log(imgData)
+      // const imgData = req.body.images
+      // const subTitle = req.body.subTitle
+      // console.log(imgData)
 
-          //2
+      //2
       //     let dataArray = []
       // for (let i = 0; i < imgData.length; i++) {
       //   for (let j = 0; j < nameData.length; j++) {
@@ -24,11 +128,10 @@ class Movies {
       //   }
       // }
 
-     // 1   
+      // 1
       //   let dataArray = imgData?.map(function(item, index) {
-    //     return {img: item, subTitle: subTitle[index]};
-    // });
-
+      //     return {img: item, subTitle: subTitle[index]};
+      // });
 
       // imgData.forEach((element, i) => {
       //   nameData.forEach((el,index ) => {
@@ -54,116 +157,113 @@ class Movies {
       //   product,
       // });
     } catch (error) {
-      console.log("imageError:", error)
+      console.log("imageError:", error);
     }
   }
-  async getAll(req, res){
+  async getAll(req, res) {
     try {
-      const moviesAll = await MoviesDB.find()
+      const moviesAll = await MoviesDB.find();
       res.status(201).json({
         success: true,
-        moviesAll
+        moviesAll,
       });
     } catch (error) {
-      console.log("gellAll course", error)
+      console.log("gellAll course", error);
     }
   }
-  async indexa(req, res){
+  async indexa(req, res) {
     try {
-      const a =
-       [
-          {
-            title: "John",
-            movies: [
-              {
-                sub: "000000000",
-                subt: "Deneme"
-              },
-              {
-                sub: "111111",
-                subt: "Deneme111"
-              },
-              {
-                sub: "22222",
-                subt: "Deneme222"
-              },
-              {
-                sub: "33333333",
-                subt: "Deneme3333"
-              },
+      const a = [
+        {
+          title: "Johneqeq",
+          movies: [
+            {
+              sub: "000002eqwe0000",
+              subt: "Deneme",
+            },
+            {
+              sub: "111wqewqe111",
+              subt: "Deneme111",
+            },
+            {
+              sub: "22222",
+              subt: "Deneme222",
+            },
+            {
+              sub: "33333333",
+              subt: "Deneme3333",
+            },
+          ],
+        },
+        {
+          title: "Mqweerteqeq",
+          movies: [
+            {
+              sub: "mov",
+              subt: "Don mbov",
+            },
+            {
+              sub: "asdasd",
+              subt: "asdadasd",
+            },
+            {
+              sub: "sdadasda",
+              subt: "asdadasd",
+            },
+            {
+              sub: "2asdad",
+              subt: "asdsd",
+            },
+          ],
+        },
+        {
+          title: "wqrqwrqrcan",
+          movies: [
+            {
+              sub: "modf2112312gdsfgdv",
+              subt: "Dqweqweegfgon mbov",
+            },
+            {
+              sub: "13adasdas",
+              subt: "asdvfdgrthrqfadasd",
+            },
+            {
+              sub: "sdadafgdsfgdsfgsda",
+              subt: "asdadfgdsdasd",
+            },
+            {
+              sub: "2asdadsfgfgdsfgdsgd",
+              subt: "asdsdfsgdsgfsd",
+            },
+            {
+              sub: "asdfgdsgfdsfasd",
+              subt: "asgdsgdsfgdfsgdadasd",
+            },
+            {
+              sub: "sdadagsdfgdssda",
+              subt: "asdadfgsdfdasd",
+            },
+            {
+              sub: "2asdsfgsdfgsdgdad",
+              subt: "dsfgasdsd",
+            },
+          ],
+        },
+      ];
 
-            ]
-          },
-          {
-            title: "Mert",
-            movies: [
-              {
-                sub: "mov",
-                subt: "Don mbov"
-              },
-              {
-                sub: "asdasd",
-                subt: "asdadasd"
-              },
-              {
-                sub: "sdadasda",
-                subt: "asdadasd"
-              },
-              {
-                sub: "2asdad",
-                subt: "asdsd"
-              },
+      const data = [];
+      for (let i = 0; i < a.length; i++) {
+        const list = a[i];
+        const product = await MoviesDB.create(list);
+        data.push(product._id);
+      }
 
-            ]
-          },
-          {
-            title: "can",
-            movies: [
-              {
-                sub: "modfgdsfgdv",
-                subt: "Degfgon mbov"
-              },
-              {
-                sub: "asdadasdas",
-                subt: "asdvfdgrthrqfadasd"
-              },
-              {
-                sub: "sdadafgdsfgdsfgsda",
-                subt: "asdadfgdsdasd"
-              },
-              {
-                sub: "2asdadsfgfgdsfgdsgd",
-                subt: "asdsdfsgdsgfsd"
-              },
-              {
-                sub: "asdfgdsgfdsfasd",
-                subt: "asgdsgdsfgdfsgdadasd"
-              },
-              {
-                sub: "sdadagsdfgdssda",
-                subt: "asdadfgsdfdasd"
-              },
-              {
-                sub: "2asdsfgsdfgsdgdad",
-                subt: "dsfgasdsd"
-              },
-
-            ]
-          },
-        ]
-        const data = []
-        for(let i = 0; i < a.length; i++) {
-          const list = a[i]
-          const product = await MoviesDB.create(list);
-          data.push(product._id)
-        }
-    
       res.status(201).json({
         success: true,
         id: data,
       });
     } catch (error) {
-      console.log("imageError:", error)
+      console.log("imageError:", error);
     }
   }
 }

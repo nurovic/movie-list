@@ -9,7 +9,7 @@ const peopleData = {
     //   contacts: [{ number: "000000000", title: "Deneme"}]
       {
         title: "John",
-        movies: [{ movie: "", subTitle: "Deneme"}]
+        movies: [{ movie: "", subTitle: ""}]
       },
   ]
 };

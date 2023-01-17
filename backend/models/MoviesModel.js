@@ -4,7 +4,7 @@ const MoviesSchema = new Mongoose.Schema(
          
             {
                 title: String,
-                images: [
+                movies: [
                     {
                         public_id: {
                             type: String,
