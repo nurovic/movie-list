@@ -94,33 +94,33 @@ const convertBase64 = (file) => {
 };
 
 const People = ({ peopleArrayHelpers }) => {
-  const [name, setName] = React.useState("");
+  const [title, setTitle] = React.useState("");
   const { values, setFieldValue } = useFormikContext();
 
   const handleAddPerson = () => {
     const person = {};
-    person.name = name;
+    person.title = title;
     person.movies = [];
 
     peopleArrayHelpers.push(person);
     setFieldValue("count", values.count + 1);
-    setName("");
+    setTitle("");
   };
 
   const handleChange = event => {
-    setName(event.currentTarget.value);
+    setTitle(event.currentTarget.value);
   };
 
   return (
     <>
-      <input type="text" value={name} onChange={handleChange} />
+      <input type="text" value={title} onChange={handleChange} />
       <button type="button" onClick={handleAddPerson}>
         add person
       </button>
       {values.people.map((person, index) => (
-        <div key={person.name + index}>
+        <div key={person.title + index}>
           <br />
-          <span>{person.name}'s contacts:</span>
+          <span>{person.title}'s contacts:</span>
           <FieldArray name={`people[${index}].movies`}>
             {arrayHelpers => (
               <>

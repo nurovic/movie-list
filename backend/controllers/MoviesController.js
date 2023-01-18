@@ -3,6 +3,102 @@ const cloudinary = require("cloudinary");
 
 class Movies {
   async index(req, res) {
+    // try {
+      let dataSchema =  JSON.parse(req.body.quantity)
+      dataSchema.forEach(async (mp) => {
+        let mapMov = await Promise.all(mp.movies.map(async (ds, i) => {
+           const dad = await cloudinary.v2.uploader.upload(ds.movie)
+           .then((res) => {
+             let src = {
+               public_id: "",
+               url: "",
+              //  subTitle: ds.subTitle,
+             };
+             src.public_id = res.public_id, src.url = res.secure_url
+             ds.movie = src
+             return mp
+           })
+           .catch((err) => (console.log("ERRRRR", err)) );
+          //  console.log("DAAAAAADé", dad)
+          //  dad?.movies?.map(a => console.log("MOVEIES",a))
+           return dad
+        }))
+        return  mapMov
+        
+      })
+      // res.status(201).send(ada)
+
+      console.log("ADA", dataSchema)
+
+      // dataSchema?.map(as => console.log("MAP-aS", as))
+    // } catch (error) {
+    //   console.log("imageError:", error);
+    // }
+  }
+  indexd(req, res) {
+    try {
+      let dataSchema =  JSON.parse(req.body.quantity)
+      dataSchema.forEach((mp) => {
+        let mapMov = mp.movies.map( (ds, i) => {
+          const result = []
+          //  return (ds = { public_id: 2,  url: 34,  ds: ds.subTitle,});
+          const res = cloudinary.uploader.upload(ds.movie)
+          .then((dtb) => {
+            let src = {
+              public_id : "",
+              url: "",
+              subTitle : ds.subTitle
+            }
+            src.public_id = dtb.public_id,
+            src.url = dtb.secure_url
+            ds = src
+            return ds
+            }
+            )
+            console.log("RES", res)
+          // return (ds = { public_id: result.public_id,  url: result.secure_url,  ds: ds.subTitle,});
+        })
+        mp.movies = mapMov;
+        console.log(dataSchema)
+        dataSchema?.map(ok => console.log(ok))
+
+      });
+    } catch (error) {
+      console.log("imageError:", error);
+    }
+  }
+  async indexg(req, res) {
+    try {
+      let dataSchema =  JSON.parse(req.body.quantity)
+      let hey = [];
+      dataSchema.forEach((mp) => {
+        let h = []
+        let fj = mp.movies.map((ds, i) => {
+          cloudinary.v2.uploader.upload(ds.movie)
+          .then((dtb) => {
+            let src = {
+              public_id : "",
+              url: "",
+              ds : ds.subTitle
+            }
+            src.public_id = dtb.public_id,
+            src.url = dtb.secure_url
+            return src
+          }).then((da) => (
+            h.push(da)
+          ))
+          // return (ds = { public_id: result.public_id,  url: result.secure_url,  ds: ds.subTitle,});
+        });
+        console.log(h )
+        mp.movies = fj;
+        hey.push(mp);
+      });
+      dataSchema.map((a) =>(console.log(a.movie)))
+    } catch (error) {
+      console.log("imageError:", error);
+    }
+  }
+  async indexö(req, res) {
     try {
       // const dataSchema = [
       //   {
@@ -94,19 +190,17 @@ class Movies {
       //     // });
       //   }
       // }
-      let dataSchema = req.body.quantity;
-      console.log(dataSchema)
+      let dataSchema =  JSON.parse(req.body.quantity)
       let hey = [];
       dataSchema.forEach((mp) => {
-        console.log(mp)
-        // let fj = mp.movies.map((ds, i) => {
-        //   const result =  cloudinary.v2.uploader.upload(ds.movie);
-        //   return (ds = { public_id: result.public_id,  url: result.secure_url,  ds: ds.subTitle,});
-        // });
-        // mp.movies = fj;
-        // hey.push(mp);
+        let fj = mp.movies.map(async (ds, i) => {
+          const result = await cloudinary.v2.uploader.upload(ds.movie);
+          console.log(result)
+          return (ds = { public_id: result.public_id,  url: result.secure_url,  ds: ds.subTitle,});
+        });
+        mp.movies = fj;
+        hey.push(mp);
       });
-      console.log(dataSchema);
       // hey.map(a => console.log(a.movies))
       // console.log(req.body.quantity)
       // a?.map(a => ( console.log(a)) )
