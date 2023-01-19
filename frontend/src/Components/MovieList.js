@@ -78,7 +78,7 @@ const convertBase64 = (file) => {
     <>
       {values.people[personIndex].movies.map((contact, index) => (
         <div key={index}>
-          {"." + contact.movie}
+          {/* {"." + contact.movie} */}
           {"." + contact.subTitle}
           <br />
         </div>
@@ -140,12 +140,11 @@ const People = ({ peopleArrayHelpers }) => {
 
 const MyForm = () => {
   const dataCpz = async (e) => {
-      console.log(e.people)
       const data = e.people
+      console.log(JSON.stringify(data))
       const newQuantity = new FormData();
       newQuantity.append('quantity', JSON.stringify(data))
       await axios.post("http://localhost:4000/movies", newQuantity)
-    
   }
   return (
 
@@ -170,9 +169,9 @@ const MyForm = () => {
               </FieldArray>
             </div>
             <div>
-              <pre style={{ fontSize: "65%" }}>
+              {/* <pre style={{ fontSize: "65%" }}>
                 {JSON.stringify(values, null, 2)}
-              </pre>
+              </pre> */}
             </div>
           </div>
           <button type="submit" > send</button>
