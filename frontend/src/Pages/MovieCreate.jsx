@@ -1,9 +1,9 @@
 import React from 'react'
-import MovieList from '../Components/MovieList'
+import CreateFormArray from '../Components/FormMovieArray/CreateFormArray'
 const MovieCreate = () => {
   return (
     <div>
-      <MovieList/>
+      <CreateFormArray/>
     </div>
   )
 }
