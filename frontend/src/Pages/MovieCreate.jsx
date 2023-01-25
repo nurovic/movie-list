@@ -3,7 +3,7 @@ import CreateFormArray from '../Components/FormMovieArray/CreateFormArray'
 const MovieCreate = () => {
   return (
     <div>
-      <CreateFormArray/>
+      <CreateFormArray />
     </div>
   )
 }

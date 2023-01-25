@@ -4,48 +4,59 @@ import { FieldArray, useFormikContext } from "formik";
 
 
 const FormTitle = ({ peopleArrayHelpers }) => {
-    const [title, setTitle] = React.useState("");
-    const { values, setFieldValue } = useFormikContext();
-  
-    const handleAddPerson = () => {
-      const person = {};
-      person.title = title;
-      person.movies = [];
-  
-      peopleArrayHelpers.push(person);
-      setFieldValue("count", values.count + 1);
-      setTitle("");
-    };
-  
-    const handleChange = event => {
-      setTitle(event.currentTarget.value);
-    };
-  
-    return (
-      <>
-        <input type="text" value={title} onChange={handleChange} />
-        <button type="button" onClick={handleAddPerson}>
-          add person
-        </button>
-        {values.people.map((person, index) => (
-          <div key={person.title + index}>
-            <br />
-            <span>{person.title}'s contacts:</span>
-            <FieldArray name={`people[${index}].movies`}>
-              {arrayHelpers => (
-                <>
-                  <br />
-                  <FormMovieArray
-                    personIndex={index}
-                    contactsArrayHelpers={arrayHelpers}
-                  />
-                </>
-              )}
-            </FieldArray>
-          </div>
-        ))}
-      </>
-    );
+  const [title, setTitle] = React.useState("");
+  const { values, setFieldValue } = useFormikContext();
+
+  const handleAddPerson = () => {
+    const person = {};
+    person.title = title;
+    person.movies = [];
+
+    peopleArrayHelpers.push(person);
+    setFieldValue("count", values.count + 1);
+    setTitle("");
   };
+
+  const handleChange = event => {
+    setTitle(event.currentTarget.value);
+  };
+
+  return (
+    <>
+      <input type="text" value={title} onChange={handleChange}
+        className="border border-black rounded h-6 mr-2"
+        placeholder="Add Section"
+      />
+      <button type="button" onClick={handleAddPerson}
+        className="bg-transparent hover:bg-amber-500 text-amber-500 font-semibold hover:text-white py-1 px-1 border border-amber-500 hover:border-transparent rounded">
+        Add Section
+      </button>
+      {values.people.map((person, index) => (
+        <div key={person.title + index}
+          className="border-solid border rounded border-slate-200 mt-4"
+        >
+          <br />
+          <span
+            className="text-lg font-bold"
+          >{person.title} Sections:</span>
+          <FieldArray
+
+            name={`people[${index}].movies`}>
+            {arrayHelpers => (
+              <>
+                <br />
+                <FormMovieArray
+                  className="border-2 border-black rounded h-6 mr-2"
+                  personIndex={index}
+                  contactsArrayHelpers={arrayHelpers}
+                />
+              </>
+            )}
+          </FieldArray>
+        </div>
+      ))}
+    </>
+  );
+};
 
 export default FormTitle
