@@ -6,6 +6,7 @@ const peopleData = {
   count: 2,
   people: [
     {
+      uid:"1",
       title: "John",
       movies: [{ movie: "", subTitle: "" }]
     },
@@ -14,11 +15,11 @@ const peopleData = {
 const CreateFormArray = () => {
   const dataCpz = async (e) => {
     const data = e.people
-    console.log(JSON.stringify(data))
+    // console.log(JSON.stringify(data))
     const newQuantity = new FormData();
     newQuantity.append('quantity', JSON.stringify(data))
     const res = await axios.post("http://localhost:4000/movies", newQuantity)
-    console.log(res)
+    // console.log(res)
   }
   return (
 
@@ -43,9 +44,9 @@ const CreateFormArray = () => {
                   </FieldArray>
                 </div>
                 <div>
-                  {/* <pre style={{ fontSize: "65%" }}>
-                {JSON.stringify(values, null, 2)}
-              </pre> */}
+                    <pre style={{ fontSize: "65%" }}>
+                  {JSON.stringify(values, null, 2)}
+                </pre>
                 </div>
               </div>
               <button type="submit" className="bg-transparent right-0 bottom-0  w-24 hover:bg-blue-300 text-blue-400 font-semibold hover:text-white py-1 px-1 border border-blue-500 hover:border-transparent rounded"
