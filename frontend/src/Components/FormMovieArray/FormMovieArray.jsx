@@ -1,20 +1,26 @@
 import React from "react";
 import { useFormikContext } from "formik";
 import { v4 as uuidv4 } from "uuid";
+import { uploadImage } from "../../Helpers/Cloudinary/Upload";
 
 const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
-  const [movie, setMovie] = React.useState("");
+  const [movie, setMovie] = React.useState({});
+  const [inputVal, setiIputVal] = React.useState("");
   const [subTitle, setSubTitle] = React.useState("");
   const { values } = useFormikContext();
 
-  const handleAddContactNumber = () => {
+  const handleAddContactNumber = async () => {
+    const result = await uploadImage(movie);
+    const data = {
+      public_id: result.public_id,
+      url: result.url,
+    };
     const movies = {};
-    movies.movie = movie;
+    movies.movie = data;
     movies.subTitle = subTitle;
     movies.uid = uuidv4().slice(0, 8);
-
     contactsArrayHelpers.push(movies);
-    setMovie("");
+    setMovie({});
     setSubTitle("");
   };
 
@@ -35,25 +41,29 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
 
   const handleChange = async (event) => {
     if (event.target.type === "file") {
-      const file = event.target.files[0];
-      const base64 = await convertBase64(file);
-      setMovie(base64);
+      const file = await event.target.files[0];
+      setMovie(file);
+      // const result = await uploadImage(file);
+      // setMovie({
+      //   public_id : result.public_id,
+      //   url : result.secure_url
+      // })
     } else {
       setSubTitle(event.currentTarget.value);
     }
   };
 
   const deleteFile = (id) => {
-  contactsArrayHelpers.remove(id);
-};
+    contactsArrayHelpers.remove(id);
+  };
 
-const deleteSection = (id) => {
-  // const index = contactsArrayHelpers.form.values.people.indexOf(id)
-  console.log(id)
-  // console.log(index)
-  contactsArrayHelpers.form.values.people.splice("1", 1)
+  const deleteSection = (id) => {
+    // const index = contactsArrayHelpers.form.values.people.indexOf(id)
+    console.log(id);
+    // console.log(index)
+    contactsArrayHelpers.form.values.people.splice("1", 1);
 
-  return   contactsArrayHelpers
+    return contactsArrayHelpers;
     // contactsArrayHelpers.remove(id);
   };
 
@@ -83,7 +93,6 @@ const deleteSection = (id) => {
           value={subTitle}
           onChange={handleChange}
         />
-
         <input
           type="file"
           name="movie"
@@ -93,7 +102,8 @@ const deleteSection = (id) => {
         file:text-md file:font-semibold  file:text-white
         file:bg-gray-400
         hover:file:cursor-pointer hover:file:opacity-80"
-          onChange={handleChange}
+        onChange={handleChange}
+        value={inputVal}
         />
       </div>
       <div className="flex justify-between">

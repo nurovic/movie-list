@@ -13,7 +13,7 @@ const peopleData = {
   ]
 };
 const CreateFormArray = () => {
-  const dataCpz = async (e) => {
+  const dataCpz = async (e) => {  
     const data = e.people
     // console.log(JSON.stringify(data))
     const newQuantity = new FormData();
