@@ -144,5 +144,16 @@ class Movies {
       console.log("imageError:", error);
     }
   }
+   async delete(req, res) {
+    const public_id = req.params.id
+    try {
+      const response = await cloudinary.v2.uploader.destroy("bbxbj3ux2zqvdme9unew", {resource_type : "video"})
+      console.log(response)
+      
+    } catch (error) {
+      console.log("MOVIE DELETE", error)
+    }
+    
+  }
 }
 module.exports = new Movies();

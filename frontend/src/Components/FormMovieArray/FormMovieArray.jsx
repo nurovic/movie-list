@@ -2,7 +2,7 @@ import React from "react";
 import { useFormikContext } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { uploadImage } from "../../Helpers/Cloudinary/Upload";
-
+import axios from 'axios'
 const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
   const [movie, setMovie] = React.useState({});
   const [inputVal, setiIputVal] = React.useState("");
@@ -11,9 +11,11 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
 
   const handleAddContactNumber = async () => {
     const result = await uploadImage(movie);
+    console.log(result)
     const data = {
       public_id: result.public_id,
       url: result.url,
+      signature: result.signature,
     };
     const movies = {};
     movies.movie = data;
@@ -43,18 +45,20 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
     if (event.target.type === "file") {
       const file = await event.target.files[0];
       setMovie(file);
-      // const result = await uploadImage(file);
-      // setMovie({
-      //   public_id : result.public_id,
-      //   url : result.secure_url
-      // })
+
     } else {
       setSubTitle(event.currentTarget.value);
     }
   };
+  async function deleteImage(id){
+    console.log("hee",id)
+    await axios.delete(`http://localhost:4000/movies/${id}`)
 
-  const deleteFile = (id) => {
-    contactsArrayHelpers.remove(id);
+  }
+  const deleteFile = (data) => {
+    const public_id = data.movie.public_id
+    // contactsArrayHelpers.remove(id);
+    deleteImage("nn3d4pwy4vv3fevylksb")
   };
 
   const deleteSection = (id) => {
@@ -74,7 +78,7 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
           <div className="flex justify-between border-solid border-2 border-slate-200 rounded py-1 mt-2">
             {".DĞER" + contact.subTitle}
             <button
-              onClick={() => deleteFile(contact.uid)}
+              onClick={() => deleteFile(contact)}
               type="button"
               className="bg-transparent hover:bg-red-500 text-red-400 font-semibold hover:text-white py-1 px-1 border border-red-500 hover:border-transparent rounded"
             >
