@@ -11,7 +11,6 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
 
   const handleAddContactNumber = async () => {
     const result = await uploadImage(movie);
-    console.log(result)
     const data = {
       public_id: result.public_id,
       url: result.url,
@@ -51,21 +50,21 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
     }
   };
   async function deleteImage(id){
-    console.log("hee",id)
     await axios.delete(`http://localhost:4000/movies/${id}`)
 
   }
   const deleteFile = (data) => {
     const public_id = data.movie.public_id
-    // contactsArrayHelpers.remove(id);
-    deleteImage("nn3d4pwy4vv3fevylksb")
+    console.log(contactsArrayHelpers)
+    // contactsArrayHelpers.remove(data.uid);
+    deleteImage(public_id)
   };
 
   const deleteSection = (id) => {
-    // const index = contactsArrayHelpers.form.values.people.indexOf(id)
+    // const index = contactsArrayHelpers.form.values.curriculum.indexOf(id)
     console.log(id);
     // console.log(index)
-    contactsArrayHelpers.form.values.people.splice("1", 1);
+    contactsArrayHelpers.form.values.curriculum.splice("1", 1);
 
     return contactsArrayHelpers;
     // contactsArrayHelpers.remove(id);
@@ -73,7 +72,7 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
 
   return (
     <>
-      {values.people[personIndex].movies.map((contact, index) => (
+      {values.curriculum[personIndex].movies.map((contact, index) => (
         <div key={index}>
           <div className="flex justify-between border-solid border-2 border-slate-200 rounded py-1 mt-2">
             {".DĞER" + contact.subTitle}
@@ -116,10 +115,10 @@ const FormMovieArray = ({ personIndex, contactsArrayHelpers }) => {
           className="bg-transparent hover:bg-amber-500 mb-4 text-amber-400 font-semibold hover:text-white py-1 px-1 border border-amber-500 hover:border-transparent rounded"
           onClick={handleAddContactNumber}
         >
-          Files Add to {values.people[personIndex].title}
+          Files Add to {values.curriculum[personIndex].title}
         </button>
         <button
-          onClick={() => deleteSection(values.people[personIndex].uid)}
+          onClick={() => deleteSection(values.curriculum[personIndex].uid)}
           type="button"
           className="bg-transparent hover:bg-red-500 mb-4 text-red-400 font-semibold hover:text-white py-1 px-1 border border-red-500 hover:border-transparent rounded"
         >

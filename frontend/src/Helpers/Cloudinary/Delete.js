@@ -21,6 +21,5 @@ export async function deleteImage(id) {
     .then((res) => {
       return res;
     });
-  console.log(data);
   return data;
 }

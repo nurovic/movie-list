@@ -2,29 +2,20 @@ import React from "react";
 import { Formik, Form, FieldArray } from "formik";
 import FormTitle from './FormTitle'
 import axios from 'axios'
-const peopleData = {
-  count: 2,
-  people: [
-    {
-      uid:"1",
-      title: "John",
-      movies: [{ movie: "", subTitle: "" }]
-    },
-  ]
+const curriculumData = {
+  curriculum: []
 };
 const CreateFormArray = () => {
   const dataCpz = async (e) => {  
-    const data = e.people
-    // console.log(JSON.stringify(data))
+    const data = e.curriculum
     const newQuantity = new FormData();
     newQuantity.append('quantity', JSON.stringify(data))
     const res = await axios.post("http://localhost:4000/movies", newQuantity)
-    // console.log(res)
   }
   return (
 
     <>
-      <Formik initialValues={{ ...peopleData }} enableReinitialize={true}
+      <Formik initialValues={{ ...curriculumData }} enableReinitialize={true}
         onSubmit={a => { dataCpz(a) }}
       >
         {({ values }) => (
@@ -32,7 +23,7 @@ const CreateFormArray = () => {
             <Form className="flex flex-col w-5/12 relative">
               <div className="flex justify-center ">
                 <div className="w-full">
-                  <FieldArray name="people">
+                  <FieldArray name="curriculum">
                     {arrayHelpers => {
                       return (
                         <>

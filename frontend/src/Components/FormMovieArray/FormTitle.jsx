@@ -14,7 +14,6 @@ const FormTitle = ({ peopleArrayHelpers }) => {
     person.uid = uuidv4().slice(0, 8)
 
     peopleArrayHelpers.push(person);
-    setFieldValue("count", values.count + 1);
     setTitle("");
   };
 
@@ -33,7 +32,7 @@ const FormTitle = ({ peopleArrayHelpers }) => {
         className="bg-transparent hover:bg-amber-500 text-amber-500 font-semibold hover:text-white py-1 px-1 border border-amber-500 hover:border-transparent rounded">
         Add Section
       </button>
-      {values.people.map((person, index) => (
+      {values.curriculum.map((person, index) => (
         <div key={person.title + index}
           className="border-solid border rounded border-slate-200 mt-4"
         >
@@ -43,7 +42,7 @@ const FormTitle = ({ peopleArrayHelpers }) => {
           >{person.title} Sections:</span>
           <FieldArray
 
-            name={`people[${index}].movies`}>
+            name={`curriculum[${index}].movies`}>
             {arrayHelpers => (
               <>
                 <br />
