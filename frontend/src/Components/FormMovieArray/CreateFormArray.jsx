@@ -11,6 +11,7 @@ const CreateFormArray = () => {
     const newQuantity = new FormData();
     newQuantity.append('quantity', JSON.stringify(data))
     const res = await axios.post("http://localhost:4000/movies", newQuantity)
+    console.log(res)
   }
   return (
 

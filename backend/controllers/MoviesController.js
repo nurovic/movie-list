@@ -2,6 +2,27 @@ const MoviesDB = require("../models/MoviesModel");
 const cloudinary = require("cloudinary");
 
 class Movies {
+  async createMovie(req, res) {
+    try {
+      const movieData = JSON.parse(req.body.quantity);
+      const dataList = [];
+      for (let i = 0; i < movieData.length; i++) {
+        const movie = movieData[i];
+        const product = await MoviesDB.create(movie);
+        dataList.push(product._id);
+      }
+  
+      res.status(201).json({
+        success: true,
+        idList: dataList,
+      });
+    } catch (error) {
+      console.log("Creata Movie ERROR:", error)
+    }
+
+  }
+  
+
 
   async index(req, res) {
     try {

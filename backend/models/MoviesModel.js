@@ -14,6 +14,10 @@ const MoviesSchema = new Mongoose.Schema(
                 type: String,
                 required: true,
               },
+              signature: {
+                type: String,
+                required: true,
+              },
             },
             subTitle:  {
                 type: String,
