@@ -16,11 +16,12 @@ class Course {
 
   async create(req, res){
     try {
-      const a = await CourseDB.create(req.body);
+      console.log(JSON.parse(req.body.quantity))
+      // const a = await CourseDB.create(req.body);
 
       res.status(201).json({
         success: true,
-        a
+        
       });
         } catch (error) {
         console.log("Error Course create", error)

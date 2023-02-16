@@ -11,7 +11,12 @@ const CreateFormArray = () => {
     const newQuantity = new FormData();
     newQuantity.append('quantity', JSON.stringify(data))
     const res = await axios.post("http://localhost:4000/movies", newQuantity)
-    console.log(res)
+    const newCourse = new FormData();
+    newCourse.append('quantity', JSON.stringify(res.data))
+    const list = res.data
+    console.log(list)
+    const resa = await axios.post("http://localhost:4000/course", newCourse)
+    console.log("movie",resa)
   }
   return (
 
